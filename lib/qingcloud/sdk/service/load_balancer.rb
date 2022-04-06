@@ -121,17 +121,19 @@ module QingCloud
       end
 
       # Documentation URL: https://docs.qingcloud.com/api/lb/create_loadbalancer.html
-      def create_load_balancer(eips: [], http_header_size: nil, loadbalancer_name: "", loadbalancer_type: nil, node_count: nil, private_ip: "", project_id: "", security_group: "", vxnet: "")
+      def create_load_balancer(cluster_mode: nil, eips: [], http_header_size: nil, loadbalancer_name: "", loadbalancer_type: nil, mode: nil, node_count: nil, private_ip: "", project_id: "", security_group: "", vxnet: "")
         input = {
           config: config,
           properties: properties,
           api_name: "CreateLoadBalancer",
           request_method: "GET",
           request_params: {
+            "cluster_mode" => cluster_mode, # cluster_mode's available values: 0, 1
             "eips" => eips,
             "http_header_size" => http_header_size,
             "loadbalancer_name" => loadbalancer_name,
             "loadbalancer_type" => loadbalancer_type, # loadbalancer_type's available values: 0, 1, 2, 3, 4, 5
+            "mode" => mode, # mode's available values: 0, 1
             "node_count" => node_count,
             "private_ip" => private_ip,
             "project_id" => project_id,
@@ -745,6 +747,17 @@ module QingCloud
       def create_load_balancer_input_validate(input)
         input.deep_stringify_keys!
 
+        unless input["request_params"]["cluster_mode"].to_s.empty?
+          cluster_mode_valid_values = ["0", "1"]
+          unless cluster_mode_valid_values.include? input["request_params"]["cluster_mode"].to_s
+            raise ParameterValueNotAllowedError.new(
+              "cluster_mode",
+              input["request_params"]["cluster_mode"],
+              cluster_mode_valid_values
+            )
+          end
+        end
+
         unless input["request_params"]["loadbalancer_type"].to_s.empty?
           loadbalancer_type_valid_values = ["0", "1", "2", "3", "4", "5"]
           unless loadbalancer_type_valid_values.include? input["request_params"]["loadbalancer_type"].to_s
@@ -752,6 +765,17 @@ module QingCloud
               "loadbalancer_type",
               input["request_params"]["loadbalancer_type"],
               loadbalancer_type_valid_values
+            )
+          end
+        end
+
+        unless input["request_params"]["mode"].to_s.empty?
+          mode_valid_values = ["0", "1"]
+          unless mode_valid_values.include? input["request_params"]["mode"].to_s
+            raise ParameterValueNotAllowedError.new(
+              "mode",
+              input["request_params"]["mode"],
+              mode_valid_values
             )
           end
         end

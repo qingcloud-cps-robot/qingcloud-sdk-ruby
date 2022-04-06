@@ -43,11 +43,11 @@ module QingCloud
         request.send
       end
 
-      def describe_access_keys(access_keys: [], limit: nil, offset: nil, owner: "", search_word: "", status: [], verbose: nil)
+      def describe_access_key(access_keys: [], limit: nil, offset: nil, owner: "", search_word: "", status: [], verbose: nil)
         input = {
           config: config,
           properties: properties,
-          api_name: "DescribeAccessKeys",
+          api_name: "DescribeAccessKey",
           request_method: "GET",
           request_params: {
             "access_keys" => access_keys,
@@ -60,7 +60,7 @@ module QingCloud
           },
         }
 
-        describe_access_keys_input_validate input
+        describe_access_key_input_validate input
 
         request = Request.new input
         request.send
@@ -76,7 +76,7 @@ module QingCloud
         end
       end
 
-      def describe_access_keys_input_validate(input)
+      def describe_access_key_input_validate(input)
         input.deep_stringify_keys!
       end
     end
