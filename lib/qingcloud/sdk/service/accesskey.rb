@@ -14,227 +14,71 @@
 #  | limitations under the License.
 #  +-------------------------------------------------------------------------
 
-require 'active_support/core_ext/hash/keys'
+require "active_support/core_ext/hash/keys"
 
 module QingCloud
   module SDK
-    
-    
-    
-
     class AccesskeyService
       attr_accessor :config, :properties
 
       def initialize(config, properties)
-        self.config     = config
+        self.config = config
         self.properties = properties.deep_symbolize_keys
       end
 
-      
-        
-  
-
-  
-  
-  def delete_access_keys(access_keys: [])
-    input   = {
-      config:         config,
-      properties:     properties,
-      api_name:       'DeleteAccessKeys',
-      request_method: 'GET',
-      request_params: {
-        'access_keys'=> access_keys,
+      def delete_access_keys(access_keys: [])
+        input = {
+          config: config,
+          properties: properties,
+          api_name: "DeleteAccessKeys",
+          request_method: "GET",
+          request_params: {
+            "access_keys" => access_keys,
+          },
         }
-    }
 
-    delete_access_keys_input_validate input
+        delete_access_keys_input_validate input
 
-    request = Request.new input
-    request.send
-  end
+        request = Request.new input
+        request.send
+      end
 
-      
-        
-  
-
-  
-  
-  def describe_access_key(access_keys: [],limit: nil,offset: nil,owner: '',search_word: '',status: [],verbose: nil)
-    input   = {
-      config:         config,
-      properties:     properties,
-      api_name:       'DescribeAccessKey',
-      request_method: 'GET',
-      request_params: {
-        'access_keys'=> access_keys,
-        'limit'=> limit,
-        'offset'=> offset,
-        'owner'=> owner,
-        'search_word'=> search_word,
-        'status'=> status,
-        'verbose'=> verbose,
+      def describe_access_key(access_keys: [], limit: nil, offset: nil, owner: "", search_word: "", status: [], verbose: nil)
+        input = {
+          config: config,
+          properties: properties,
+          api_name: "DescribeAccessKey",
+          request_method: "GET",
+          request_params: {
+            "access_keys" => access_keys,
+            "limit" => limit,
+            "offset" => offset,
+            "owner" => owner,
+            "search_word" => search_word,
+            "status" => status,
+            "verbose" => verbose,
+          },
         }
-    }
 
-    describe_access_key_input_validate input
+        describe_access_key_input_validate input
 
-    request = Request.new input
-    request.send
-  end
-
-      
+        request = Request.new input
+        request.send
+      end
 
       private
-      
-        
-  
-  
-  
 
-  def delete_access_keys_input_validate(input)
-    input.deep_stringify_keys!
+      def delete_access_keys_input_validate(input)
+        input.deep_stringify_keys!
 
-    
-    
-  
-  
-  
-
-  
-    
-      
-        if input['request_params']['access_keys'].to_s.empty?
-          raise ParameterRequiredError.new('access_keys', 'DeleteAccessKeysInput')
+        if input["request_params"]["access_keys"].to_s.empty?
+          raise ParameterRequiredError.new("access_keys", "DeleteAccessKeysInput")
         end
-      
-      
-      
-      
-      
-    
-  
+      end
 
-    
-    
-  
-  
-  
-
-  
-
-    
-    
-  
-  
-  
-
-  
-
-  end
-
-      
-        
-  
-  
-  
-
-  def describe_access_key_input_validate(input)
-    input.deep_stringify_keys!
-
-    
-    
-  
-  
-  
-
-  
-    
-      
-      
-      
-      
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-      
-      
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-
-    
-    
-  
-  
-  
-
-  
-
-    
-    
-  
-  
-  
-
-  
-
-  end
-
-      
+      def describe_access_key_input_validate(input)
+        input.deep_stringify_keys!
+      end
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-

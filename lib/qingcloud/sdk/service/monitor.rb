@@ -14,150 +14,56 @@
 #  | limitations under the License.
 #  +-------------------------------------------------------------------------
 
-require 'active_support/core_ext/hash/keys'
+require "active_support/core_ext/hash/keys"
 
 module QingCloud
   module SDK
-    
-    
-    
-
     class MonitorService
       attr_accessor :config, :properties
 
       def initialize(config, properties)
-        self.config     = config
+        self.config = config
         self.properties = properties.deep_symbolize_keys
       end
 
-      
-        
-  
-
-  
-  # Documentation URL: https://docs.qingcloud.com/api/monitor/get_monitor.html
-  def get_monitor(end_time: '',meters: [],resource: '',start_time: '',step: '')
-    input   = {
-      config:         config,
-      properties:     properties,
-      api_name:       'GetMonitor',
-      request_method: 'GET',
-      request_params: {
-        'end_time'=> end_time,
-        'meters'=> meters,
-        'resource'=> resource,
-        'start_time'=> start_time,
-        'step'=> step,# step's available values: 5m, 15m, 2h, 1d
+      # Documentation URL: https://docs.qingcloud.com/api/monitor/get_monitor.html
+      def get_monitor(end_time: "", meters: [], resource: "", start_time: "", step: "")
+        input = {
+          config: config,
+          properties: properties,
+          api_name: "GetMonitor",
+          request_method: "GET",
+          request_params: {
+            "end_time" => end_time,
+            "meters" => meters,
+            "resource" => resource,
+            "start_time" => start_time,
+            "step" => step, # step's available values: 5m, 15m, 2h, 1d
+          },
         }
-    }
 
-    get_monitor_input_validate input
+        get_monitor_input_validate input
 
-    request = Request.new input
-    request.send
-  end
-
-      
+        request = Request.new input
+        request.send
+      end
 
       private
-      
-        
-  
-  
-  
 
-  def get_monitor_input_validate(input)
-    input.deep_stringify_keys!
+      def get_monitor_input_validate(input)
+        input.deep_stringify_keys!
 
-    
-    
-  
-  
-  
-
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-      
-      
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-        
-        
-          unless input['request_params']['step'].to_s.empty?
-            step_valid_values = ["5m", "15m", "2h", "1d"]
-            unless step_valid_values.include? input['request_params']['step'].to_s
-              raise ParameterValueNotAllowedError.new(
-                'step',
-                input['request_params']['step'],
-                step_valid_values
-              )
-            end
+        unless input["request_params"]["step"].to_s.empty?
+          step_valid_values = ["5m", "15m", "2h", "1d"]
+          unless step_valid_values.include? input["request_params"]["step"].to_s
+            raise ParameterValueNotAllowedError.new(
+              "step",
+              input["request_params"]["step"],
+              step_valid_values
+            )
           end
-        
-      
-    
-  
-
-    
-    
-  
-  
-  
-
-  
-
-    
-    
-  
-  
-  
-
-  
-
-  end
-
-      
+        end
+      end
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
