@@ -14,287 +14,809 @@
 #  | limitations under the License.
 #  +-------------------------------------------------------------------------
 
-require "active_support/core_ext/hash/keys"
+require 'active_support/core_ext/hash/keys'
 
 module QingCloud
   module SDK
+    
+    
+    
+
     class EIPService
       attr_accessor :config, :properties
 
       def initialize(config, properties)
-        self.config = config
+        self.config     = config
         self.properties = properties.deep_symbolize_keys
       end
 
-      # Documentation URL: https://docs.qingcloud.com/api/eip/allocate_eips.html
-      def allocate_eips(bandwidth: nil, billing_mode: "", count: nil, eip_name: "", need_icp: nil)
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "AllocateEips",
-          request_method: "GET",
-          request_params: {
-            "bandwidth" => bandwidth,
-            "billing_mode" => billing_mode, # billing_mode's available values: bandwidth, traffic
-            "count" => count,
-            "eip_name" => eip_name,
-            "need_icp" => need_icp, # need_icp's available values: 0, 1
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/eip/allocate_eips.html
+  def allocate_eips(bandwidth: nil,billing_mode: '',count: nil,eip_name: '',need_icp: nil)
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'AllocateEips',
+      request_method: 'GET',
+      request_params: {
+        'bandwidth'=> bandwidth,
+        'billing_mode'=> billing_mode,# billing_mode's available values: bandwidth, traffic
+        'count'=> count,
+        'eip_name'=> eip_name,
+        'need_icp'=> need_icp,# need_icp's available values: 0, 1
         }
+    }
 
-        allocate_eips_input_validate input
+    allocate_eips_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
 
-      # Documentation URL: https://docs.qingcloud.com/api/eip/associate_eip.html
-      def associate_eip(eip: "", instance: "")
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "AssociateEip",
-          request_method: "GET",
-          request_params: {
-            "eip" => eip,
-            "instance" => instance,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/eip/associate_eip.html
+  def associate_eip(eip: '',instance: '')
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'AssociateEip',
+      request_method: 'GET',
+      request_params: {
+        'eip'=> eip,
+        'instance'=> instance,
         }
+    }
 
-        associate_eip_input_validate input
+    associate_eip_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
 
-      # Documentation URL: https://docs.qingcloud.com/api/eip/dissociate_eips.html
-      def change_eips_bandwidth(bandwidth: nil, eips: [])
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "ChangeEipsBandwidth",
-          request_method: "GET",
-          request_params: {
-            "bandwidth" => bandwidth,
-            "eips" => eips,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/eip/dissociate_eips.html
+  def change_eips_bandwidth(bandwidth: nil,eips: [])
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'ChangeEipsBandwidth',
+      request_method: 'GET',
+      request_params: {
+        'bandwidth'=> bandwidth,
+        'eips'=> eips,
         }
+    }
 
-        change_eips_bandwidth_input_validate input
+    change_eips_bandwidth_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
 
-      # Documentation URL: https://docs.qingcloud.com/api/eip/change_eips_billing_mode.html
-      def change_eips_billing_mode(billing_mode: "", eip_group: "", eips: [])
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "ChangeEipsBillingMode",
-          request_method: "GET",
-          request_params: {
-            "billing_mode" => billing_mode, # billing_mode's available values: bandwidth, traffic
-            "eip_group" => eip_group,
-            "eips" => eips,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/eip/change_eips_billing_mode.html
+  def change_eips_billing_mode(billing_mode: '',eip_group: '',eips: [])
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'ChangeEipsBillingMode',
+      request_method: 'GET',
+      request_params: {
+        'billing_mode'=> billing_mode,# billing_mode's available values: bandwidth, traffic
+        'eip_group'=> eip_group,
+        'eips'=> eips,
         }
+    }
 
-        change_eips_billing_mode_input_validate input
+    change_eips_billing_mode_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
 
-      # Documentation URL: https://docs.qingcloud.com/api/eip/describe_eips.html
-      def describe_eips(eips: [], instance_id: "", limit: nil, offset: nil, owner: "", project_id: "", search_word: "", status: [], tags: [], verbose: nil)
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "DescribeEips",
-          request_method: "GET",
-          request_params: {
-            "eips" => eips,
-            "instance_id" => instance_id,
-            "limit" => limit,
-            "offset" => offset,
-            "owner" => owner,
-            "project_id" => project_id,
-            "search_word" => search_word,
-            "status" => status,
-            "tags" => tags,
-            "verbose" => verbose,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/eip/describe_eips.html
+  def describe_eips(eips: [],instance_id: '',limit: nil,offset: nil,owner: '',project_id: '',search_word: '',status: [],tags: [],verbose: nil)
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'DescribeEips',
+      request_method: 'GET',
+      request_params: {
+        'eips'=> eips,
+        'instance_id'=> instance_id,
+        'limit'=> limit,
+        'offset'=> offset,
+        'owner'=> owner,
+        'project_id'=> project_id,
+        'search_word'=> search_word,
+        'status'=> status,
+        'tags'=> tags,
+        'verbose'=> verbose,
         }
+    }
 
-        describe_eips_input_validate input
+    describe_eips_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
 
-      # Documentation URL: https://docs.qingcloud.com/api/eip/dissociate_eips.html
-      def dissociate_eips(eips: [])
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "DissociateEips",
-          request_method: "GET",
-          request_params: {
-            "eips" => eips,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/eip/dissociate_eips.html
+  def dissociate_eips(eips: [])
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'DissociateEips',
+      request_method: 'GET',
+      request_params: {
+        'eips'=> eips,
         }
+    }
 
-        dissociate_eips_input_validate input
+    dissociate_eips_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
 
-      # Documentation URL: https://docs.qingcloud.com/api/eip/modify_eip_attributes.html
-      def modify_eip_attributes(description: "", eip: "", eip_name: "")
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "ModifyEipAttributes",
-          request_method: "GET",
-          request_params: {
-            "description" => description,
-            "eip" => eip,
-            "eip_name" => eip_name,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/eip/modify_eip_attributes.html
+  def modify_eip_attributes(description: '',eip: '',eip_name: '')
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'ModifyEipAttributes',
+      request_method: 'GET',
+      request_params: {
+        'description'=> description,
+        'eip'=> eip,
+        'eip_name'=> eip_name,
         }
+    }
 
-        modify_eip_attributes_input_validate input
+    modify_eip_attributes_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
 
-      # Documentation URL: https://docs.qingcloud.com/api/eip/release_eips.html
-      def release_eips(eips: [])
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "ReleaseEips",
-          request_method: "GET",
-          request_params: {
-            "eips" => eips,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/eip/release_eips.html
+  def release_eips(eips: [])
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'ReleaseEips',
+      request_method: 'GET',
+      request_params: {
+        'eips'=> eips,
         }
+    }
 
-        release_eips_input_validate input
+    release_eips_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
+
+      
 
       private
+      
+        
+  
+  
+  
 
-      def allocate_eips_input_validate(input)
-        input.deep_stringify_keys!
+  def allocate_eips_input_validate(input)
+    input.deep_stringify_keys!
 
-        if input["request_params"]["bandwidth"].to_s.empty?
-          raise ParameterRequiredError.new("bandwidth", "AllocateEipsInput")
-        end
+    
+    
+  
+  
+  
 
-        unless input["request_params"]["billing_mode"].to_s.empty?
-          billing_mode_valid_values = ["bandwidth", "traffic"]
-          unless billing_mode_valid_values.include? input["request_params"]["billing_mode"].to_s
-            raise ParameterValueNotAllowedError.new(
-              "billing_mode",
-              input["request_params"]["billing_mode"],
-              billing_mode_valid_values
-            )
+  
+    
+      
+      
+        
+          if input['request_params']['bandwidth'].to_s.empty?
+            raise ParameterRequiredError.new('bandwidth', 'AllocateEipsInput')
           end
-        end
-
-        unless input["request_params"]["need_icp"].to_s.empty?
-          need_icp_valid_values = ["0", "1"]
-          unless need_icp_valid_values.include? input["request_params"]["need_icp"].to_s
-            raise ParameterValueNotAllowedError.new(
-              "need_icp",
-              input["request_params"]["need_icp"],
-              need_icp_valid_values
-            )
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+          unless input['request_params']['billing_mode'].to_s.empty?
+            billing_mode_valid_values = ["bandwidth", "traffic"]
+            unless billing_mode_valid_values.include? input['request_params']['billing_mode'].to_s
+              raise ParameterValueNotAllowedError.new(
+                'billing_mode',
+                input['request_params']['billing_mode'],
+                billing_mode_valid_values
+              )
+            end
           end
-        end
-      end
-
-      def associate_eip_input_validate(input)
-        input.deep_stringify_keys!
-
-        if input["request_params"]["eip"].to_s.empty?
-          raise ParameterRequiredError.new("eip", "AssociateEipInput")
-        end
-
-        if input["request_params"]["instance"].to_s.empty?
-          raise ParameterRequiredError.new("instance", "AssociateEipInput")
-        end
-      end
-
-      def change_eips_bandwidth_input_validate(input)
-        input.deep_stringify_keys!
-
-        if input["request_params"]["bandwidth"].to_s.empty?
-          raise ParameterRequiredError.new("bandwidth", "ChangeEipsBandwidthInput")
-        end
-
-        if input["request_params"]["eips"].to_s.empty?
-          raise ParameterRequiredError.new("eips", "ChangeEipsBandwidthInput")
-        end
-      end
-
-      def change_eips_billing_mode_input_validate(input)
-        input.deep_stringify_keys!
-
-        if input["request_params"]["billing_mode"].to_s.empty?
-          raise ParameterRequiredError.new("billing_mode", "ChangeEipsBillingModeInput")
-        end
-
-        unless input["request_params"]["billing_mode"].to_s.empty?
-          billing_mode_valid_values = ["bandwidth", "traffic"]
-          unless billing_mode_valid_values.include? input["request_params"]["billing_mode"].to_s
-            raise ParameterValueNotAllowedError.new(
-              "billing_mode",
-              input["request_params"]["billing_mode"],
-              billing_mode_valid_values
-            )
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+          unless input['request_params']['need_icp'].to_s.empty?
+            need_icp_valid_values = ["0", "1"]
+            unless need_icp_valid_values.include? input['request_params']['need_icp'].to_s
+              raise ParameterValueNotAllowedError.new(
+                'need_icp',
+                input['request_params']['need_icp'],
+                need_icp_valid_values
+              )
+            end
           end
+        
+      
+    
+  
+
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
+        
+  
+  
+  
+
+  def associate_eip_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+        
+          if input['request_params']['eip'].to_s.empty?
+            raise ParameterRequiredError.new('eip', 'AssociateEipInput')
+          end
+        
+        
+      
+    
+  
+    
+      
+      
+        
+          if input['request_params']['instance'].to_s.empty?
+            raise ParameterRequiredError.new('instance', 'AssociateEipInput')
+          end
+        
+        
+      
+    
+  
+
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
+        
+  
+  
+  
+
+  def change_eips_bandwidth_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+        
+          if input['request_params']['bandwidth'].to_s.empty?
+            raise ParameterRequiredError.new('bandwidth', 'ChangeEipsBandwidthInput')
+          end
+        
+        
+      
+    
+  
+    
+      
+        if input['request_params']['eips'].to_s.empty?
+          raise ParameterRequiredError.new('eips', 'ChangeEipsBandwidthInput')
         end
+      
+      
+      
+      
+      
+    
+  
 
-        if input["request_params"]["eips"].to_s.empty?
-          raise ParameterRequiredError.new("eips", "ChangeEipsBillingModeInput")
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
+        
+  
+  
+  
+
+  def change_eips_billing_mode_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+        
+          if input['request_params']['billing_mode'].to_s.empty?
+            raise ParameterRequiredError.new('billing_mode', 'ChangeEipsBillingModeInput')
+          end
+        
+        
+          unless input['request_params']['billing_mode'].to_s.empty?
+            billing_mode_valid_values = ["bandwidth", "traffic"]
+            unless billing_mode_valid_values.include? input['request_params']['billing_mode'].to_s
+              raise ParameterValueNotAllowedError.new(
+                'billing_mode',
+                input['request_params']['billing_mode'],
+                billing_mode_valid_values
+              )
+            end
+          end
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+        if input['request_params']['eips'].to_s.empty?
+          raise ParameterRequiredError.new('eips', 'ChangeEipsBillingModeInput')
         end
-      end
+      
+      
+      
+      
+      
+    
+  
 
-      def describe_eips_input_validate(input)
-        input.deep_stringify_keys!
-      end
+    
+    
+  
+  
+  
 
-      def dissociate_eips_input_validate(input)
-        input.deep_stringify_keys!
+  
 
-        if input["request_params"]["eips"].to_s.empty?
-          raise ParameterRequiredError.new("eips", "DissociateEipsInput")
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
+        
+  
+  
+  
+
+  def describe_eips_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+      
+      
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+      
+      
+      
+    
+  
+    
+      
+      
+      
+      
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
+        
+  
+  
+  
+
+  def dissociate_eips_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+        if input['request_params']['eips'].to_s.empty?
+          raise ParameterRequiredError.new('eips', 'DissociateEipsInput')
         end
-      end
+      
+      
+      
+      
+      
+    
+  
 
-      def modify_eip_attributes_input_validate(input)
-        input.deep_stringify_keys!
+    
+    
+  
+  
+  
 
-        if input["request_params"]["eip"].to_s.empty?
-          raise ParameterRequiredError.new("eip", "ModifyEipAttributesInput")
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
+        
+  
+  
+  
+
+  def modify_eip_attributes_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+          if input['request_params']['eip'].to_s.empty?
+            raise ParameterRequiredError.new('eip', 'ModifyEipAttributesInput')
+          end
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
+        
+  
+  
+  
+
+  def release_eips_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+        if input['request_params']['eips'].to_s.empty?
+          raise ParameterRequiredError.new('eips', 'ReleaseEipsInput')
         end
-      end
+      
+      
+      
+      
+      
+    
+  
 
-      def release_eips_input_validate(input)
-        input.deep_stringify_keys!
+    
+    
+  
+  
+  
 
-        if input["request_params"]["eips"].to_s.empty?
-          raise ParameterRequiredError.new("eips", "ReleaseEipsInput")
-        end
-      end
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+

@@ -14,46 +14,195 @@
 #  | limitations under the License.
 #  +-------------------------------------------------------------------------
 
-require "active_support/core_ext/hash/keys"
+require 'active_support/core_ext/hash/keys'
 
 module QingCloud
   module SDK
+    
+    
+    
+
     class MiscService
       attr_accessor :config, :properties
 
       def initialize(config, properties)
-        self.config = config
+        self.config     = config
         self.properties = properties.deep_symbolize_keys
       end
 
-      # Documentation URL: https://docs.qingcloud.com/product/api/action/misc/get_quota_left.html
-      def get_quota_left(resource_types: [], zone: "")
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "GetQuotaLeft",
-          request_method: "GET",
-          request_params: {
-            "resource_types" => resource_types,
-            "zone" => zone,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/product/api/action/misc/get_quota_left.html
+  def get_quota_left(resource_types: [],zone: '')
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'GetQuotaLeft',
+      request_method: 'GET',
+      request_params: {
+        'resource_types'=> resource_types,
+        'zone'=> zone,
         }
+    }
 
-        get_quota_left_input_validate input
+    get_quota_left_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
+
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/product/api/action/misc
+  def get_resource_limit(volume_type: nil,zone: '')
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'GetResourceLimit',
+      request_method: 'GET',
+      request_params: {
+        'volume_type'=> volume_type,
+        'zone'=> zone,
+        }
+    }
+
+    get_resource_limit_input_validate input
+
+    request = Request.new input
+    request.send
+  end
+
+      
 
       private
+      
+        
+  
+  
+  
 
-      def get_quota_left_input_validate(input)
-        input.deep_stringify_keys!
+  def get_quota_left_input_validate(input)
+    input.deep_stringify_keys!
 
-        if input["request_params"]["zone"].to_s.empty?
-          raise ParameterRequiredError.new("zone", "GetQuotaLeftInput")
-        end
-      end
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+      
+      
+      
+    
+  
+    
+      
+      
+        
+          if input['request_params']['zone'].to_s.empty?
+            raise ParameterRequiredError.new('zone', 'GetQuotaLeftInput')
+          end
+        
+        
+      
+    
+  
+
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
+        
+  
+  
+  
+
+  def get_resource_limit_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+          if input['request_params']['zone'].to_s.empty?
+            raise ParameterRequiredError.new('zone', 'GetResourceLimitInput')
+          end
+        
+        
+      
+    
+  
+
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+

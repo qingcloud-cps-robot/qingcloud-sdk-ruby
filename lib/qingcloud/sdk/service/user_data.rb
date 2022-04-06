@@ -14,46 +14,116 @@
 #  | limitations under the License.
 #  +-------------------------------------------------------------------------
 
-require "active_support/core_ext/hash/keys"
+require 'active_support/core_ext/hash/keys'
 
 module QingCloud
   module SDK
+    
+    
+    
+
     class UserDataService
       attr_accessor :config, :properties
 
       def initialize(config, properties)
-        self.config = config
+        self.config     = config
         self.properties = properties.deep_symbolize_keys
       end
 
-      # Documentation URL: https://docs.qingcloud.com/api/userdata/upload_userdata_attachment.html
-      def upload_user_data_attachment(attachment_content: "", attachment_name: "")
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "UploadUserDataAttachment",
-          request_method: "POST",
-          request_params: {
-            "attachment_content" => attachment_content,
-            "attachment_name" => attachment_name,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/userdata/upload_userdata_attachment.html
+  def upload_user_data_attachment(attachment_content: '',attachment_name: '')
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'UploadUserDataAttachment',
+      request_method: 'POST',
+      request_params: {
+        'attachment_content'=> attachment_content,
+        'attachment_name'=> attachment_name,
         }
+    }
 
-        upload_user_data_attachment_input_validate input
+    upload_user_data_attachment_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
+
+      
 
       private
+      
+        
+  
+  
+  
 
-      def upload_user_data_attachment_input_validate(input)
-        input.deep_stringify_keys!
+  def upload_user_data_attachment_input_validate(input)
+    input.deep_stringify_keys!
 
-        if input["request_params"]["attachment_content"].to_s.empty?
-          raise ParameterRequiredError.new("attachment_content", "UploadUserDataAttachmentInput")
-        end
-      end
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+        
+          if input['request_params']['attachment_content'].to_s.empty?
+            raise ParameterRequiredError.new('attachment_content', 'UploadUserDataAttachmentInput')
+          end
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+

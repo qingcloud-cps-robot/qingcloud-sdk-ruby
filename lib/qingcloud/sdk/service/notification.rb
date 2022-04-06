@@ -22,7 +22,7 @@ module QingCloud
     
     
 
-    class DNSAliasService
+    class NotificationService
       attr_accessor :config, :properties
 
       def initialize(config, properties)
@@ -35,92 +35,50 @@ module QingCloud
   
 
   
-  # Documentation URL: https://docs.qingcloud.com/api/dns_alias/associate_dns_alias.html
-  def associate_dns_alias(prefix: '',resource: '')
+  
+  def describe_notification_lists(limit: nil,notification_lists: [],offset: nil,owner: '')
     input   = {
       config:         config,
       properties:     properties,
-      api_name:       'AssociateDNSAlias',
+      api_name:       'DescribeNotificationLists',
       request_method: 'GET',
       request_params: {
-        'prefix'=> prefix,
-        'resource'=> resource,
-        }
-    }
-
-    associate_dns_alias_input_validate input
-
-    request = Request.new input
-    request.send
-  end
-
-      
-        
-  
-
-  
-  # Documentation URL: https://docs.qingcloud.com/api/dns_alias/describe_dns_aliases.html
-  def describe_dns_aliases(dns_aliases: [],limit: nil,offset: nil,resource_id: '',search_word: '')
-    input   = {
-      config:         config,
-      properties:     properties,
-      api_name:       'DescribeDNSAliases',
-      request_method: 'GET',
-      request_params: {
-        'dns_aliases'=> dns_aliases,
         'limit'=> limit,
+        'notification_lists'=> notification_lists,
         'offset'=> offset,
+        'owner'=> owner,
+        }
+    }
+
+    describe_notification_lists_input_validate input
+
+    request = Request.new input
+    request.send
+  end
+
+      
+        
+  
+
+  
+  
+  def send_alarm_notification(notification_data: [],notification_list_id: '',resource_id: '',resource_name: '',resource_type: '',user_id: '')
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'SendAlarmNotification',
+      request_method: 'GET',
+      request_params: {
+        'notification_data'=> notification_data,
+        'notification_list_id'=> notification_list_id,
         'resource_id'=> resource_id,
-        'search_word'=> search_word,
+        'resource_name'=> resource_name,
+        'resource_type'=> resource_type,
+        'user_id'=> user_id,
         }
     }
 
-    describe_dns_aliases_input_validate input
-
-    request = Request.new input
-    request.send
-  end
-
-      
-        
-  
-
-  
-  # Documentation URL: https://docs.qingcloud.com/api/dns_alias/dissociate_dns_aliases.html
-  def dissociate_dns_aliases(dns_aliases: [])
-    input   = {
-      config:         config,
-      properties:     properties,
-      api_name:       'DissociateDNSAliases',
-      request_method: 'GET',
-      request_params: {
-        'dns_aliases'=> dns_aliases,
-        }
-    }
-
-    dissociate_dns_aliases_input_validate input
-
-    request = Request.new input
-    request.send
-  end
-
-      
-        
-  
-
-  
-  # Documentation URL: https://docs.qingcloud.com/api/dns_alias/get_dns_label.html
-  def get_dns_label()
-    input   = {
-      config:         config,
-      properties:     properties,
-      api_name:       'GetDNSLabel',
-      request_method: 'GET',
-      request_params: {
-        }
-    }
-
-    get_dns_label_input_validate input
+    send_alarm_notification_input_validate input
 
     request = Request.new input
     request.send
@@ -135,7 +93,7 @@ module QingCloud
   
   
 
-  def associate_dns_alias_input_validate(input)
+  def describe_notification_lists_input_validate(input)
     input.deep_stringify_keys!
 
     
@@ -149,140 +107,14 @@ module QingCloud
       
       
         
-          if input['request_params']['prefix'].to_s.empty?
-            raise ParameterRequiredError.new('prefix', 'AssociateDNSAliasInput')
-          end
-        
         
       
     
   
     
       
-      
-        
-          if input['request_params']['resource'].to_s.empty?
-            raise ParameterRequiredError.new('resource', 'AssociateDNSAliasInput')
-          end
-        
-        
-      
-    
-  
-
-    
-    
-  
-  
-  
-
-  
-
-    
-    
-  
-  
-  
-
-  
-
-  end
-
-      
-        
-  
-  
-  
-
-  def describe_dns_aliases_input_validate(input)
-    input.deep_stringify_keys!
-
-    
-    
-  
-  
-  
-
-  
-    
-      
-      
-      
-      
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-    
-      
-      
-        
-        
-      
-    
-  
-
-    
-    
-  
-  
-  
-
-  
-
-    
-    
-  
-  
-  
-
-  
-
-  end
-
-      
-        
-  
-  
-  
-
-  def dissociate_dns_aliases_input_validate(input)
-    input.deep_stringify_keys!
-
-    
-    
-  
-  
-  
-
-  
-    
-      
-        if input['request_params']['dns_aliases'].to_s.empty?
-          raise ParameterRequiredError.new('dns_aliases', 'DissociateDNSAliasesInput')
+        if input['request_params']['notification_lists'].to_s.empty?
+          raise ParameterRequiredError.new('notification_lists', 'DescribeNotificationListsInput')
         end
       
       
@@ -291,6 +123,22 @@ module QingCloud
       
     
   
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
 
     
     
@@ -316,7 +164,7 @@ module QingCloud
   
   
 
-  def get_dns_label_input_validate(input)
+  def send_alarm_notification_input_validate(input)
     input.deep_stringify_keys!
 
     
@@ -325,6 +173,118 @@ module QingCloud
   
   
 
+  
+    
+      
+        if input['request_params']['notification_data'].to_s.empty?
+          raise ParameterRequiredError.new('notification_data', 'SendAlarmNotificationInput')
+        end
+      
+      
+      
+      
+      
+        input['request_params']['notification_data'].map { |x|
+          
+          
+          
+  
+  
+  
+
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+
+        }
+      
+    
+  
+    
+      
+      
+        
+          if input['request_params']['notification_list_id'].to_s.empty?
+            raise ParameterRequiredError.new('notification_list_id', 'SendAlarmNotificationInput')
+          end
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+      
+    
+  
+    
+      
+      
+        
+          if input['request_params']['user_id'].to_s.empty?
+            raise ParameterRequiredError.new('user_id', 'SendAlarmNotificationInput')
+          end
+        
+        
+      
+    
   
 
     

@@ -14,217 +14,297 @@
 #  | limitations under the License.
 #  +-------------------------------------------------------------------------
 
-require "active_support/core_ext/hash/keys"
+require 'active_support/core_ext/hash/keys'
 
 module QingCloud
   module SDK
+    
+    
+    
 
     # QingCloud provides QingCloud Service API (API Version 2013-08-30)
     class QingCloudService
       attr_accessor :config, :properties
 
-      def initialize(config)
-        self.config = config
-        self.properties = {}
+      def initialize(config )
+        self.config     = config
+        self.properties = {
+          }
       end
 
-      # Documentation URL: https://docs.qingcloud.com/api/zone/describe_zones.html
-      def describe_zones(status: [], zones: [])
-        input = {
-          config: config,
-          properties: properties,
-          api_name: "DescribeZones",
-          request_method: "GET",
-          request_params: {
-            "status" => status,
-            "zones" => zones,
-          },
+      
+        
+  
+
+  
+  # Documentation URL: https://docs.qingcloud.com/api/zone/describe_zones.html
+  def describe_zones(status: [],zones: [])
+    input   = {
+      config:         config,
+      properties:     properties,
+      api_name:       'DescribeZones',
+      request_method: 'GET',
+      request_params: {
+        'status'=> status,
+        'zones'=> zones,
         }
+    }
 
-        describe_zones_input_validate input
+    describe_zones_input_validate input
 
-        request = Request.new input
-        request.send
-      end
+    request = Request.new input
+    request.send
+  end
 
-      def accesskey(zone)
-        properties = {
-          "zone" => zone,
-        }
-        AccesskeyService.new(self.config, self.properties.merge(properties))
-      end
+      
 
-      def app(zone)
-        properties = {
-          "zone" => zone,
-        }
-        AppService.new(self.config, self.properties.merge(properties))
-      end
-
-      def cache(zone)
-        properties = {
-          "zone" => zone,
-        }
-        CacheService.new(self.config, self.properties.merge(properties))
-      end
-
-      def cluster(zone)
-        properties = {
-          "zone" => zone,
-        }
-        ClusterService.new(self.config, self.properties.merge(properties))
-      end
-
-      def dns_alias(zone)
-        properties = {
-          "zone" => zone,
-        }
-        DNSAliasService.new(self.config, self.properties.merge(properties))
-      end
-
-      def eip(zone)
-        properties = {
-          "zone" => zone,
-        }
-        EIPService.new(self.config, self.properties.merge(properties))
-      end
-
-      def image(zone)
-        properties = {
-          "zone" => zone,
-        }
-        ImageService.new(self.config, self.properties.merge(properties))
-      end
-
-      def instance(zone)
-        properties = {
-          "zone" => zone,
-        }
-        InstanceService.new(self.config, self.properties.merge(properties))
-      end
-
-      def job(zone)
-        properties = {
-          "zone" => zone,
-        }
-        JobService.new(self.config, self.properties.merge(properties))
-      end
-
-      def key_pair(zone)
-        properties = {
-          "zone" => zone,
-        }
-        KeyPairService.new(self.config, self.properties.merge(properties))
-      end
-
-      def load_balancer(zone)
-        properties = {
-          "zone" => zone,
-        }
-        LoadBalancerService.new(self.config, self.properties.merge(properties))
-      end
-
-      def misc()
-        properties = {}
-        MiscService.new(self.config, self.properties.merge(properties))
-      end
-
-      def mongo(zone)
-        properties = {
-          "zone" => zone,
-        }
-        MongoService.new(self.config, self.properties.merge(properties))
-      end
-
-      def monitor(zone)
-        properties = {
-          "zone" => zone,
-        }
-        MonitorService.new(self.config, self.properties.merge(properties))
-      end
-
-      def nic(zone)
-        properties = {
-          "zone" => zone,
-        }
-        NicService.new(self.config, self.properties.merge(properties))
-      end
-
-      def project(zone)
-        properties = {
-          "zone" => zone,
-        }
-        ProjectService.new(self.config, self.properties.merge(properties))
-      end
-
-      def rdb(zone)
-        properties = {
-          "zone" => zone,
-        }
-        RDBService.new(self.config, self.properties.merge(properties))
-      end
-
-      def router(zone)
-        properties = {
-          "zone" => zone,
-        }
-        RouterService.new(self.config, self.properties.merge(properties))
-      end
-
-      def security_group(zone)
-        properties = {
-          "zone" => zone,
-        }
-        SecurityGroupService.new(self.config, self.properties.merge(properties))
-      end
-
-      def shared_storage(zone)
-        properties = {
-          "zone" => zone,
-        }
-        SharedStorageService.new(self.config, self.properties.merge(properties))
-      end
-
-      def snapshot(zone)
-        properties = {
-          "zone" => zone,
-        }
-        SnapshotService.new(self.config, self.properties.merge(properties))
-      end
-
-      def tag(zone)
-        properties = {
-          "zone" => zone,
-        }
-        TagService.new(self.config, self.properties.merge(properties))
-      end
-
-      def user_data(zone)
-        properties = {
-          "zone" => zone,
-        }
-        UserDataService.new(self.config, self.properties.merge(properties))
-      end
-
-      def volume(zone)
-        properties = {
-          "zone" => zone,
-        }
-        VolumeService.new(self.config, self.properties.merge(properties))
-      end
-
-      def vxnet(zone)
-        properties = {
-          "zone" => zone,
-        }
-        VxNetService.new(self.config, self.properties.merge(properties))
-      end
+      
+        def accesskey(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          AccesskeyService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def app(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          AppService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def cache(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          CacheService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def cluster(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          ClusterService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def dns_alias(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          DNSAliasService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def eip(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          EIPService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def image(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          ImageService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def instance(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          InstanceService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def job(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          JobService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def key_pair(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          KeyPairService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def load_balancer(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          LoadBalancerService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def misc()
+          properties = {
+            }
+          MiscService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def mongo(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          MongoService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def monitor(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          MonitorService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def nic(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          NicService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def notification(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          NotificationService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def project(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          ProjectService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def rdb(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          RDBService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def router(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          RouterService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def security_group(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          SecurityGroupService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def shared_storage(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          SharedStorageService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def snapshot(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          SnapshotService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def tag(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          TagService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def user_data(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          UserDataService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def volume(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          VolumeService.new(self.config, self.properties.merge(properties))
+        end
+      
+        def vxnet(zone)
+          properties = {
+            'zone'=> zone,
+            }
+          VxNetService.new(self.config, self.properties.merge(properties))
+        end
+      
 
       private
+      
+        
+  
+  
+  
 
-      def describe_zones_input_validate(input)
-        input.deep_stringify_keys!
-      end
+  def describe_zones_input_validate(input)
+    input.deep_stringify_keys!
+
+    
+    
+  
+  
+  
+
+  
+    
+      
+      
+      
+      
+      
+    
+  
+    
+      
+      
+      
+      
+      
+    
+  
+
+    
+    
+  
+  
+  
+
+  
+
+    
+    
+  
+  
+  
+
+  
+
+  end
+
+      
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
